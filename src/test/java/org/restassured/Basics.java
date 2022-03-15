@@ -53,7 +53,7 @@ public class Basics {
                 .when().get("maps/api/place/get/json")
                 .then().assertThat().log().all().statusCode(200).extract().response().asString();
 
-        // upu can also use .statusCode(200).body("address", equalTo(newAddress)); for simplicity
+        // You can also use .statusCode(200).body("address", equalTo(newAddress)); for simplicity
 
         JsonPath pR= ReusableMethods.rawToJson(getPlaceResponse); // for parsing json
         String placeResponseAddress =pR.getString("address");
