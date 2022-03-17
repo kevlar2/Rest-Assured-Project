@@ -5,7 +5,7 @@ import org.restassured.files.payload;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class SumValidation {
+public class SumValidationTest {
 
     @Test
     public void sumOfCourses(){
