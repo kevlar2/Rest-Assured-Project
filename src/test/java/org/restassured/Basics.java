@@ -6,12 +6,16 @@ import org.hamcrest.core.StringContains;
 import org.restassured.files.payload;
 import org.testng.Assert;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 
 public class Basics {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         // Validate of add place API is working as expected
 
@@ -19,15 +23,18 @@ public class Basics {
         // Given - All input Details
         // When - Submit the API - resource and http methods
         // Then - Validate the response
+        // Convert the content of the file to String-> content of file can convert into Byte->Byte data to String
 
         RestAssured.baseURI = "https://rahulshettyacademy.com";
         Matcher<String> m = new StringContains("");
 
         // Add place
         String response =given().log().all().queryParam("key", "qaclick123").header("Content-type", "application/json")
-                .body(payload.AddPlace()).when().post("maps/api/place/add/json")
+                .body(new String(Files.readAllBytes(Paths.get("C:\\Users\\kevinogaga\\gitHub\\Rest-Assured-Project\\src\\main\\java\\org\\restassured\\files\\addPlace.json")))).when().post("maps/api/place/add/json")
                 .then().log().all().assertThat().statusCode(200).body("scope", equalTo("APP"))
                 .header("server", "Apache/2.4.18 (Ubuntu)").extract().response().asString();
+
+        // Payload for .body above payload.AddPlace()
 
                 // Add place -> Update Place with New Address -> Get Place to validate if new address is present in response
 
