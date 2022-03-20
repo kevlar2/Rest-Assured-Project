@@ -1,0 +1,14 @@
+Steps to Automate in Jira Application:
+
+1. Login to Jira to create session using Login API.
+2. Add a comment to existing issue using add comment API
+3. Add attachment to existing issue using the add attachment API
+4. Get issue details and verify if added comment and attachment exists using Get issue API
+
+
+Topics covered:
+- How to create session filter for authentication in rest assured automation
+- Introducing path parameters and query parameters together in single Test
+- Sending Files as attachments using rest assured with multipart method
+- Parsing complex Json and limiting Json response through query parameters
+- Handling HTTPS certification validation through automated code.
