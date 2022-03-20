@@ -17,11 +17,12 @@ public class loginTest {
         @DataProvider(name="TestData")
         public Object [] [] logInData ()
         {
-            Object [][] data = new Object [3][3];
+            Object [][] data = new Object [4][3];
 
             data [0][0] = "TestNG@Framework.com";		data [0][1] = "TestNG1234";		data [0][2] = true;
             data [1][0] = "Joe@Doe.com";			    data [1][1] = "DoeDoe34";		data [1][2] = false;
             data [2][0] = "Test@AutomationU.com";		data [2][1] = "TAU1234";		data [2][2] = true;
+            data [3][0] = "kevin@huma.com";             data [3][1] = "Tester@11";      data [3][2] = false;
 
             return data;
         }
