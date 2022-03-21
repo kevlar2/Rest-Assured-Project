@@ -14,6 +14,23 @@ public class loginTest {
                     "  Successful Log In = " + success + "\n" );
         }
 
+        @Test(dataProvider = "TestData")
+        public void validateLoginFeature(String email, String password, boolean success)
+        {
+            System.out.println("Start Login process: " + "\n" +
+                    "  Email = " + email + "\n" +
+                    "  Password = " + password);
+
+            if(success)
+            {
+                System.out.println(email + ", Login is successfully." + "\n");
+            }
+            else
+            {
+                System.out.println(email + ", Login is unsuccessful" + "\n");
+            }
+        }
+
         @DataProvider(name="TestData")
         public Object [] [] logInData ()
         {
