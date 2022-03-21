@@ -23,7 +23,7 @@ public class loginTest {
 
             if(success)
             {
-                System.out.println(email + ", Login is successfully." + "\n");
+                System.out.println(email + ", Login is successful." + "\n");
             }
             else
             {
