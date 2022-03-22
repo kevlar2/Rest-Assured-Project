@@ -3,6 +3,8 @@ package org.restassured;
 import io.restassured.RestAssured;
 import io.restassured.filter.session.SessionFilter;
 
+import java.io.File;
+
 import static io.restassured.RestAssured.given;
 
 public class JiraTest {
@@ -25,12 +27,29 @@ public class JiraTest {
         // Add comment scenario
         given().pathParam("id", "10007").log().all().header("Content-Type", "application/json")
                 .body("{\n" +
-                "    \"body\": \"Comment made from automation rest API test MPBPro.\",\n" +
+                "    \"body\": \"Comment made from automation rest API test pc with an attachment.\",\n" +
                 "    \"visibility\": {\n" +
                 "        \"type\": \"role\",\n" +
                 "        \"value\": \"Administrators\"\n" +
                 "    }\n" +
                 "}").filter(sessionFilter).when().post("rest/api/2/issue/{id}/comment")
                 .then().log().all().assertThat().statusCode(201);
+
+        // Add Attachments
+        // key point - Using multipart file class
+        given().header("X-Atlassian-Token", "no-check").filter(sessionFilter).pathParam("id","10007")
+                .multiPart("file", new File("jira-test-file.txt")).when()
+                .post("/rest/api/2/issue/{id}/attachments").then().log().all().assertThat().statusCode(200);
+        
+        // Get issue details and verify if added comment and attachment exists using Get issue API
+        // pathParam re-routes you to the sub-resources
+        // queryParam helps you filter your resources
+         String issueDetails = given().filter(sessionFilter).pathParam("id","10007")
+                 .queryParam("fields", "comment")
+                 .log().all().when().get("rest/api/2/issue/{id}/")
+                 .then().log().all().extract().response().asString();
+
+        System.out.println("\n" + issueDetails);
+        
     }
 }
