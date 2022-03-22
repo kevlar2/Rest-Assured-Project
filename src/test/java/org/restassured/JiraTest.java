@@ -8,7 +8,10 @@ import static io.restassured.RestAssured.given;
 public class JiraTest {
     public static void main(String[] args) {
 
-        RestAssured.baseURI = "http://localhost:8081/";
+        String BASE_URL_MBPRO = "http://192.168.8.105:8081";
+        String BASE_URL_PC = "http://localhost:8081/";
+
+        RestAssured.baseURI = BASE_URL_PC;
 
         // Login Scenario
         SessionFilter sessionFilter = new SessionFilter(); // SessionFilter class is used to store session information after Authentication
@@ -22,7 +25,7 @@ public class JiraTest {
         // Add comment scenario
         given().pathParam("id", "10007").log().all().header("Content-Type", "application/json")
                 .body("{\n" +
-                "    \"body\": \"Comment made from automation rest API test.\",\n" +
+                "    \"body\": \"Comment made from automation rest API test MPBPro.\",\n" +
                 "    \"visibility\": {\n" +
                 "        \"type\": \"role\",\n" +
                 "        \"value\": \"Administrators\"\n" +
