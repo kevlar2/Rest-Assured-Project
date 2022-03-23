@@ -2,7 +2,8 @@ package org.restassured.files;
 
 public class payload {
 
-    public static String AddPlace(){
+    public static String AddPlace()
+    {
 
         return "{\n" +
                 "  \"location\": {\n" +
@@ -22,7 +23,8 @@ public class payload {
                 "}";
     }
 
-    public static String CoursePrice(){
+    public static String CoursePrice()
+    {
 
         return "{\n" +
                 "    \"dashboard\": {\n" +
@@ -54,16 +56,37 @@ public class payload {
                 "}";
     }
 
-    public static String Addbook(String aisle, String isbn){
+    public static String addBook(String aisle, String isbn)
+    {
 
-        String addBookPayload ="{\n" +
+        return "{\n" +
                 "  \"name\": \"Learn Appium Automation with Java\",\n" +
                 "  \"isbn\": \""+isbn+"\",\n" +
                 "  \"aisle\": \""+aisle+"\",\n" +
                 "  \"author\": \"John foe\"\n" +
                 "}";
 
-        return addBookPayload;
 
+    }
+
+    public static String jiraUserAuthenticationCredentials()
+    {
+
+        return "{\n" +
+                "    \"username\": \"korukele84\",\n" +
+                "    \"password\": \"Tester@11\"\n" +
+                "}";
+    }
+
+    public static String jiraUserComment()
+    {
+
+        return "{\n" +
+                "    \"body\": \"Comment made from automation rest API test pc with an attachment.\",\n" +
+                "    \"visibility\": {\n" +
+                "        \"type\": \"role\",\n" +
+                "        \"value\": \"Administrators\"\n" +
+                "    }\n" +
+                "}";
     }
 }
