@@ -2,6 +2,8 @@ package org.restassured.files;
 
 public class payload {
 
+    public static final String EXPECTED_JIRA_COMMENT_TEXT = "Comment made from automation rest API test pc with an attachment.";
+
     public static String AddPlace()
     {
 
@@ -82,7 +84,7 @@ public class payload {
     {
 
         return "{\n" +
-                "    \"body\": \"Comment made from automation rest API test pc with an attachment.\",\n" +
+                "    \"body\": \""+EXPECTED_JIRA_COMMENT_TEXT+"\",\n" +
                 "    \"visibility\": {\n" +
                 "        \"type\": \"role\",\n" +
                 "        \"value\": \"Administrators\"\n" +
