@@ -53,7 +53,7 @@ public class JiraTest {
 
         System.out.println("\n" + issueDetails);
 
-        // Validating extracting comment Ids
+        // Validating extracted comment Ids
         JsonPath jsCommentdetails = new JsonPath(issueDetails);
         int commentsCount = jsCommentdetails.get("fields.comment.comments.size()");
         for (int i=0; i<commentsCount; i++)
