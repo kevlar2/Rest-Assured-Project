@@ -1,8 +1,15 @@
 package org.restassured.files;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class payload {
 
     public static final String EXPECTED_JIRA_COMMENT_TEXT = "Comment made from automation rest API test pc with an attachment.";
+
+
+    public static final String  AUTHORISATION_CODE_URL = "https://rahulshettyacademy.com/getCourse.php?code=4%2F0AX4XfWiQyA38B08nmBJ8TFoQYdBLFVT_4_bNKw5d48STZPcJpdeKShXdUNm2CttgpefeEA&scope=email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=none";
+
 
     public static String AddPlace()
     {
@@ -90,5 +97,17 @@ public class payload {
                 "        \"value\": \"Administrators\"\n" +
                 "    }\n" +
                 "}";
+    }
+
+    public static Map<String, String> getQueryParamData(String code)
+    {
+        Map<String, String> queryParamData = new HashMap<String, String>();
+        queryParamData.put("code", code);
+        queryParamData.put("client_id", "692183103107-p0m7ent2hk7suguv4vq22hjcfhcr43pj.apps.googleusercontent.com");
+        queryParamData.put("client_secret", "erZOWM9g3UtwNRj340YYaK_W");
+        queryParamData.put("redirect_uri", "https://rahulshettyacademy.com/getCourse.php");
+        queryParamData.put("grant_type", "authorization_code");
+
+        return queryParamData;
     }
 }
