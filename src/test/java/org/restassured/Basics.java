@@ -30,7 +30,8 @@ public class Basics {
 
         // Add place
         String response =given().log().all().queryParam("key", "qaclick123").header("Content-type", "application/json")
-                .body(new String(Files.readAllBytes(Paths.get("C:\\Users\\kevinogaga\\gitHub\\Rest-Assured-Project\\src\\main\\java\\org\\restassured\\files\\addPlace.json")))).when().post("maps/api/place/add/json")
+                .body(new String(Files.readAllBytes(Paths.get(System.getProperty("user.dir") + "//src//main//java//org//restassured//files//addPlace.json"))))
+                .when().post("maps/api/place/add/json")
                 .then().log().all().assertThat().statusCode(200).body("scope", equalTo("APP"))
                 .header("server", "Apache/2.4.18 (Ubuntu)").extract().response().asString();
 
@@ -45,7 +46,8 @@ public class Basics {
 
         // Update place
         String newAddress = "70 Summer Walk, Africa Nigeria";
-        given().log().all().queryParam("key", "qaclick123").header("Content-type", "application/json")
+        given().log().all().queryParam("key", "qaclick123")
+                .header("Content-type", "application/json")
                 .body("{\n" +
                         "\"place_id\":\""+placeId+"\",\n" +
                         "\"address\":\""+newAddress+"\",\n" +
@@ -56,7 +58,8 @@ public class Basics {
 
 
         // Get Place
-        String getPlaceResponse =given().log().all().queryParam("key", "qaclick123").queryParam("place_id", placeId)
+        String getPlaceResponse =given().log().all().queryParam("key", "qaclick123")
+                .queryParam("place_id", placeId)
                 .when().get("maps/api/place/get/json")
                 .then().assertThat().log().all().statusCode(200).extract().response().asString();
 
