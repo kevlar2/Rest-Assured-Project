@@ -1,11 +1,13 @@
 package org.restassured;
 
+import io.restassured.parsing.Parser;
 import io.restassured.path.json.JsonPath;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.restassured.files.payload;
+import org.restassured.pojo.GetCourse;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,10 +49,18 @@ public class oAuthTest {
         JsonPath js = new JsonPath(accessTokenResponse);
         String accessToken = js.get("access_token");
 
-        // actualrequest
-        String response = given().queryParam("access_token", accessToken).when().log().all()
-                .get("https://rahulshettyacademy.com/getCourse.php").asString();
+        // Actual Request
+        // Deserializing actual request response with the help of GetCourse.class
+        GetCourse response = given().queryParam("access_token", accessToken)
+                .expect().defaultParser(Parser.JSON)
+                .when()
+                .get("https://rahulshettyacademy.com/getCourse.php").as(GetCourse.class);
 
-        System.out.println(response);
+        System.out.println("\nInstructors Name: " + response.getInstructor());
+        System.out.println("Linkedin Address" + response.getLinkedIn());
+
+        // System.out.println(response);
+
+
     }
 }
