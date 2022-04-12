@@ -8,7 +8,7 @@ public class payload {
     public static final String EXPECTED_JIRA_COMMENT_TEXT = "Comment made from automation rest API test pc with an attachment.";
 
 
-    public static final String  AUTHORISATION_CODE_URL = "https://rahulshettyacademy.com/getCourse.php?code=4%2F0AX4XfWiDjO0ZyIeqNZK73j156MAneDA0jHUzeAjwvtDOUJZJrwqN748wMurluBA8dslqzw&scope=email+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=0&prompt=none";
+    public static final String  AUTHORISATION_CODE_URL = "https://rahulshettyacademy.com/getCourse.php?code=4%2F0AX4XfWiCzs7x2RWREHHDn4P8MZuiEcZk7Zck1OknyuWo_UY3xdIEU-pZabE9n4VvjtWfKg&scope=email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=none";
 
 
     public static String AddPlace()

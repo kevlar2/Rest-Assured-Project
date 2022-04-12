@@ -7,10 +7,12 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.restassured.files.payload;
+import org.restassured.pojo.Api;
 import org.restassured.pojo.GetCourse;
+import org.restassured.pojo.WebAutomation;
+import org.testng.Assert;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static io.restassured.RestAssured.given;
 
@@ -57,9 +59,41 @@ public class oAuthTest {
                 .get("https://rahulshettyacademy.com/getCourse.php").as(GetCourse.class);
 
         System.out.println("\nInstructors Name: " + response.getInstructor());
-        System.out.println("Linkedin Address" + response.getLinkedIn());
+        System.out.println("Linkedin Address" + response.getLinkedIn() + "\n");
 
-        // System.out.println(response);
+
+        // Writing a complex query to find a specific Api course and get the price of the API course
+        List<Api> apiCourses = response.getCourses().getApi();
+        for (int i = 0; i < apiCourses.size(); i++)
+        {
+            if(apiCourses.get(i).getCourseTitle().equalsIgnoreCase("SoapUI Webservices testing"))
+            {
+                System.out.println("Course: " + apiCourses.get(i).getCourseTitle());
+                System.out.println("Price: " + apiCourses.get(i).getPrice());
+            }
+
+        }
+
+        // Writing a complex query to get the course titles for all the Web Automation
+        // Then compare Expected and Actual
+
+        String[] expectedArraylist = {"Selenium Webdriver Java",
+                "Cypress",
+                "Protractor"};
+        List<String> actualCourseList = new ArrayList<String>();
+
+        List<WebAutomation> webAutomationCourses = response.getCourses().getWebAutomation();
+        System.out.println("\nWeb automation Course Titles");
+        for (int i = 0; i < webAutomationCourses.size() ; i++)
+        {
+            actualCourseList.add(webAutomationCourses.get(i).getCourseTitle());
+        }
+
+        // compare list
+        List<String> expectedCourseList = Arrays.asList(expectedArraylist);
+
+        Assert.assertTrue(actualCourseList.equals(expectedCourseList));
+
 
 
     }
