@@ -17,33 +17,33 @@ public class serializeTest {
 
         // Creating objects using the add place POJO class
 
-        AddPlace ap = new AddPlace();
-        ap.setAccuracy(50);
-        ap.setAddress("29, side layout, cohen 09");
-        ap.setLanguage("French-IN");
-        ap.setPhone_number("(+91) 983 893 3937");
-        ap.setWebsite("http://google.com");
-        ap.setName("KO Academy");
+        AddPlace addPlace = new AddPlace();
+        addPlace.setAccuracy(50);
+        addPlace.setAddress("29, side layout, cohen 09");
+        addPlace.setLanguage("French-IN");
+        addPlace.setPhone_number("(+91) 983 893 3937");
+        addPlace.setWebsite("http://google.com");
+        addPlace.setName("KO Academy");
 
         // Creating an object for list class
         List<String> myTypesList = new ArrayList<String>();
         myTypesList.add("shoe park");
         myTypesList.add("shop");
-        ap.setTypes(myTypesList);
+        addPlace.setTypes(myTypesList);
 
         // Creating a location class object for add-place class to use
         Location location=new Location();
         location.setLat(-38.383494);
         location.setLng(33.427362);
-
+        
         //Pass the value add-place object
-        ap.setLocation(location);
+        addPlace.setLocation(location);
 
         // Example for Serialisation
 
         // Add place to google API
 
-        Response res = given().queryParam("key", "qaclick123").body(ap)
+        Response res = given().queryParam("key", "qaclick123").body(addPlace)
                 .when().post("/maps/api/place/add/json")
                 .then().assertThat().statusCode(200).extract().response();
 
