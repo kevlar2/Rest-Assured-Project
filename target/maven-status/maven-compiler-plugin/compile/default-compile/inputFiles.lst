@@ -1,4 +1,11 @@
 /Users/kevinorukele/Javaprojects/gitjavaprojects/Rest-Assured-Project/src/main/java/org/restassured/ReusableMethods.java
 /Users/kevinorukele/Javaprojects/gitjavaprojects/Rest-Assured-Project/src/main/java/org/restassured/files/payload.java
+/Users/kevinorukele/Javaprojects/gitjavaprojects/Rest-Assured-Project/src/main/java/org/restassured/pojo/GetCourse.java
+/Users/kevinorukele/Javaprojects/gitjavaprojects/Rest-Assured-Project/src/main/java/org/restassured/pojo/AddPlace.java
+/Users/kevinorukele/Javaprojects/gitjavaprojects/Rest-Assured-Project/src/main/java/org/restassured/pojo/Api.java
+/Users/kevinorukele/Javaprojects/gitjavaprojects/Rest-Assured-Project/src/main/java/org/restassured/pojo/Mobile.java
+/Users/kevinorukele/Javaprojects/gitjavaprojects/Rest-Assured-Project/src/main/java/org/restassured/pojo/Location.java
+/Users/kevinorukele/Javaprojects/gitjavaprojects/Rest-Assured-Project/src/main/java/org/restassured/pojo/WebAutomation.java
+/Users/kevinorukele/Javaprojects/gitjavaprojects/Rest-Assured-Project/src/main/java/org/restassured/pojo/Courses.java
 /Users/kevinorukele/Javaprojects/gitjavaprojects/Rest-Assured-Project/src/main/java/org/restassured/App.java
 /Users/kevinorukele/Javaprojects/gitjavaprojects/Rest-Assured-Project/src/main/java/org/restassured/complexJsonParse.java
