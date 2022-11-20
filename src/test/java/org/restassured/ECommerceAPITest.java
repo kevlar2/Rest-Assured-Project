@@ -4,10 +4,7 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.specification.RequestSpecification;
-import org.restassured.pojo.LoginRequest;
-import org.restassured.pojo.LoginResponse;
-import org.restassured.pojo.OrderDetail;
-import org.restassured.pojo.Orders;
+import org.restassured.pojo.*;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -98,6 +95,18 @@ public class ECommerceAPITest {
         RequestSpecification getOrderDetailsBaseReq = new RequestSpecBuilder().setBaseUri("https://rahulshettyacademy.com")
                 .addHeader("Authorization", loginResponse.getToken())
                 .build();
+
+        RequestSpecification getOrderDetailsReq = given().log().all().spec(getOrderDetailsBaseReq);
+
+        OderDetailsResponse reqToGetOrderDetails = getOrderDetailsReq.when().get("/api/ecom/order/get-orders-details?id=" + orderId).then().log().all()
+                .extract().response()
+                .as(OderDetailsResponse.class);
+
+        System.out.println(reqToGetOrderDetails.getData().getOrderById());
+        System.out.println(reqToGetOrderDetails.getData().getOrderBy());
+        System.out.println(reqToGetOrderDetails.getData().getProductOrderedId());
+        System.out.println(reqToGetOrderDetails.getData().getProductName());
+        System.out.println(reqToGetOrderDetails.getMessage());
 
 
         // Delete-product API
