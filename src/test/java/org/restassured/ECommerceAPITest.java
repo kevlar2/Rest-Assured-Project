@@ -5,6 +5,7 @@ import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.specification.RequestSpecification;
 import org.restassured.pojo.*;
+import org.testng.Assert;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -96,9 +97,10 @@ public class ECommerceAPITest {
                 .addHeader("Authorization", loginResponse.getToken())
                 .build();
 
-        RequestSpecification getOrderDetailsReq = given().log().all().spec(getOrderDetailsBaseReq);
+        RequestSpecification getOrderDetailsReq = given().log().all().spec(getOrderDetailsBaseReq).queryParam("id", orderId);
 
-        OderDetailsResponse reqToGetOrderDetails = getOrderDetailsReq.when().get("/api/ecom/order/get-orders-details?id=" + orderId).then().log().all()
+        OderDetailsResponse reqToGetOrderDetails = getOrderDetailsReq.when()
+                .get("/api/ecom/order/get-orders-details").then().log().all()
                 .extract().response()
                 .as(OderDetailsResponse.class);
 
@@ -110,6 +112,23 @@ public class ECommerceAPITest {
 
 
         // Delete-product API
+
+        RequestSpecification deleteProductBaseReq = new RequestSpecBuilder().setBaseUri("https://rahulshettyacademy.com")
+                .addHeader("Authorization", loginResponse.getToken())
+                .build();
+
+        RequestSpecification deleteProductReq = given().log().all().spec(deleteProductBaseReq).pathParam("productId", productId);
+
+        String reqToDeleteProduct = deleteProductReq.when().delete("/api/ecom/product/delete-product/{productId}")
+                .then().log().all()
+                .extract().response()
+                .asString();
+
+        JsonPath js2 = new JsonPath(reqToDeleteProduct);
+        String message = js2.getString("message");
+        Assert.assertEquals(message, "Product Deleted Successfully");
+
+
 
     }
 
