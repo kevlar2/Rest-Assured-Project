@@ -41,9 +41,9 @@ public class LibraryAPIExample {
         System.out.println(msg);
 
          // Get Added Book By ID
-        RequestSpecification getOrderDetailsReq = given().log().all().spec(req).queryParam("ID", id);
+        RequestSpecification getBookByIdReq = given().log().all().spec(req).queryParam("ID", id);
 
-        String bookById =  getOrderDetailsReq.when().get("/Library/GetBook.php")
+        String bookById =  getBookByIdReq.when().get("/Library/GetBook.php")
                 .then().assertThat().statusCode(200).log().all().extract().response().asString();
 
 
@@ -52,10 +52,37 @@ public class LibraryAPIExample {
         String isbn = js2.getString("isbn[0]");
         String aisle = js2.getString("aisle[0]");
         String authorName = js2.getString("author[0]");
+        System.out.println(authorName);
 
         // Get Added Book By Author name
+        RequestSpecification getBookByAuthorReq = given().log().all().spec(req).queryParam("AuthorName", authorName);
+
+        String bookByAuthor = getBookByAuthorReq.when().get("/Library/GetBook.php")
+                .then().assertThat().statusCode(200).log().all().extract().response().asString();
+
+        JsonPath bookByAuthorName = ReusableMethods.rawToJson(bookByAuthor);
+        String bookNameByAuthor = bookByAuthorName.getString("book_name[0]");
+        System.out.println(bookNameByAuthor);
 
         // Delete book
+        // Get book ID from Excel
+        ArrayList<String> bookId = dataDrivenTest.getData("delete-book");
+
+        // Use its as part of the HashMap
+        HashMap<String, Object> bookIdMap = new HashMap<>();
+        bookIdMap.put("ID", bookId.get(1));
+
+        RequestSpecification deleteBookReq = given().header("Content-Type","application/json")
+                .log().all().spec(req).body(bookIdMap);
+
+        String deleteBookResponse = deleteBookReq.when().delete("/Library/DeleteBook.php")
+                .then().assertThat().statusCode(200).log().all().extract().response().asString();
+
+        JsonPath dBr = ReusableMethods.rawToJson(deleteBookResponse);
+        String deleterBookResponseMessage = dBr.get("msg");
+
+        System.out.println(deleterBookResponseMessage);
+
 
 
 

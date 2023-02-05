@@ -57,31 +57,34 @@ public class ExcelDataDrivenTest {
                 // identify purchase testcase row
                 while(rows.hasNext()){
                     Row r=rows.next();
-                    if(r.getCell(column).getStringCellValue().equalsIgnoreCase(testCaseName)){
-                        Iterator<Cell> cv =r.cellIterator();
-                        while(cv.hasNext()){
-                            Cell cellValue = cv.next();
-                            if(cellValue.getCellType()== CellType.STRING){
-                                a.add(cellValue.getStringCellValue());
-                                //System.out.println(cellValue);
-                            }else {
-                                String intToString = NumberToTextConverter.toText(cellValue.getNumericCellValue());
+                    if(r.getCell(column) != null){
+                        if(r.getCell(column).getStringCellValue().equalsIgnoreCase(testCaseName)){
+                            Iterator<Cell> cv =r.cellIterator();
+                            while(cv.hasNext()){
+                                Cell cellValue = cv.next();
+                                if(cellValue.getCellType()== CellType.STRING){
+                                    a.add(cellValue.getStringCellValue());
+                                    //System.out.println(cellValue);
+                                }else {
+                                    String intToString = NumberToTextConverter.toText(cellValue.getNumericCellValue());
 
-                               a.add(intToString);
+                                    a.add(intToString);
+                                }
+
+
+
                             }
 
-
-
                         }
-
                     }
 
                 }
             }
             //return a;
         }
-
+        workBook.close();
         return a;
+
     }
 
     public ArrayList<String> getTestCaseData(String sheetName, String testCaseName) throws IOException {
