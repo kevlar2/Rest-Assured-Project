@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true"
+          name="/Users/kevinorukele/Javaprojects/gitjavaprojects/Rest-Assured-Project">
+        <classes>
+            <class name="org.restassured.AppTest">
+                <methods>
+                    <include name="shouldAnswerWithTrue"/>
+                </methods>
+            </class>
+            <class name="org.restassured.DynamicJson">
+                <methods>
+                    <include name="addBook"/>
+                </methods>
+            </class>
+            <class name="org.restassured.LibraryAPIExampleTest">
+                <methods>
+                    <include name="addbookapitest"/>
+                    <include name="getbookbyid"/>
+                    <include name="getbookbyauthor"/>
+                    <include name="deletebook"/>
+                </methods>
+            </class>
+            <class name="org.restassured.SumValidationTest">
+                <methods>
+                    <include name="sumOfCourses"/>
+                </methods>
+            </class>
+            <class name="org.restassured.loginTest">
+                <methods>
+                    <include name="logIn"/>
+                    <include name="validateLoginFeature"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
